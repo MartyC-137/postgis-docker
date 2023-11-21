@@ -2,17 +2,13 @@ version: "3.1"
 
 services:
   postgis:
-    image: kartoza/postgis
+    image: postgis_arm64/postgis
     container_name: postgis
+    platform: linux/arm64
     environment:
-      # If you need to create multiple database you can add coma separated databases eg gis,data
-      - POSTGRES_DB=qgis
-      - POSTGRES_USER=docker
-      - POSTGRES_PASS=docker
-      - ALLOW_IP_RANGE=0.0.0.0/0
-      # Add extensions you need to be enabled by default in the DB. Default are the five specified below
-      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
-      - RUN_AS_ROOT=true
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres} 
     ports:
       - 25432:5432
     volumes:
