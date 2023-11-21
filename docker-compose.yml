@@ -14,7 +14,7 @@ services:
       - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
       - RUN_AS_ROOT=true
     ports:
-      - 5432:5432
+      - 25432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: on-failure
@@ -30,10 +30,6 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-    networks:
-      - postgres
     restart: unless-stopped
     links:
       - postgis
