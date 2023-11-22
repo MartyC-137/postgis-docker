@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 secrets.yml
 postgres.txt
+pgadmin_pwd.txt
