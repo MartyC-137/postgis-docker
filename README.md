@@ -6,21 +6,24 @@ This project uses the following Docker base images:
 - [x] [imresamu/postgis](https://hub.docker.com/r/imresamu/postgis)
 - [x] [dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4)
 
-For the `PGADMIN_DEFAULT_PASSWORD_FILE` environment variable, create a file called `pgadmin_pwd.txt` containing your password. This file is ignored in this repo but make sure to run the following if you are working on your own:
+## Getting started
+
+- Clone the repo:
+>
+> ``` bash
+> cd repo/location
+> git clone https://github.com/MartyC-137/postgis-docker.git
+> ```
+
+- Create a directory in the root of the repo called `data`:
+> 
+> ``` bash
+> mkdir data
+> ```
+
+- Create a file called `pgadmin_pwd.txt` containing your password. This file is ignored in this repo but make sure to run the following if you are working on your own:
 >
 > ``` bash
 > echo "pgadmin_pwd.txt" >> .gitignore
-> ```
-
-I also recommend ignoring the `data/` directory that gets created:
->
-> ``` bash
 > echo "data/" >> .gitignore
 > ```
-
-### Usage
-
-``` bash
-cd repo/location
-git clone https://github.com/MartyC-137/postgis-docker.git
-```
