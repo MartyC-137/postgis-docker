@@ -163,3 +163,5 @@ postgres.txt
 pgadmin_pwd.txt
 data/
 .DS_Store
+pgadmin_pwd.txt
+postgres_pwd.txt

@@ -7,11 +7,14 @@ services:
       - 5432:5432
     platform: linux/arm64
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_pwd
     volumes:
       - type: bind
         source: ./data
         target: /var/lib/postgresql/data
+    secrets:
+      - postgres_pwd
+
 
   pgadmin:
     image: dpage/pgadmin4
@@ -23,9 +26,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd_secret
     secrets:
       - passwd_secret
+
 volumes:
   postgres:
   pgadmin:
 secrets:
   passwd_secret:
     file: ./pgadmin_pwd.txt
+  postgres_pwd:
+    file: ./postgres_pwd.txt
