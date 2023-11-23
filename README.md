@@ -26,17 +26,13 @@ mkdir data
 - Create a file called `pgadmin_pwd.txt` containing your PG Admin password:
 
 ``` sh
-echo "my_password" > pgadmin_pwd.txt
+echo "my_pgadmin_password" > pgadmin_pwd.txt
 ```
 
-- Create a file called `postgres_pwd.txt` containing the password for
-  connecting to and admistering the postgis dB. Note this file is only
-  read when initializing the postgres dB the first time the container
-  is started with an empty data sub-directory. If you want to change
-  the dB password subsequently, it will require using the `ALTER USER`
+- Create a file called `postgres_pwd.txt` containing the password for connecting to and admistering the postgis database. Note this file is only read when initializing the postgres database the first time the container is started with an empty data sub-directory. If you want to change the database password subsequently, it will require using the `ALTER USER` command in the psql shell.
 
 ``` sh
-echo "password_str" > postgres_pwd.txt
+echo "my_postgres_password" > postgres_pwd.txt
 ```
 
 - If you didn't clone the repo and are working on your own, run the following:
@@ -50,7 +46,25 @@ The containers are now ready to start.
 
 ### Setting up the database
 
+Run the following command in a terminal:
+
 ``` sh
 docker compose up --no-start
 docker compose start
 ```
+
+- Open a web browser and navigate to `http://localhost:5050/browser/` to start PGAdmin
+- Enter your PGAdmin email/username (default: pgadmin@pgadmin.org) and password (your password from `pgadmin_pwd.txt`)
+- Create a server named `postgis`:
+
+![PGAdmin1](/assets/pgadmin1.jpg)
+
+On the Connection tab, enter the following info:
+
+- `Host name/address`: postgis
+- `Port`: 5432
+- `Maintenance database`: postgres
+- `Username`: postgres
+- `Password`: the password from `postgres_pwd.txt`
+
+![!PGAdmin2](/assets/pgadmin2.jpg)
