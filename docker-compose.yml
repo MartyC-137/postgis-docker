@@ -3,42 +3,50 @@ version: "3.1"
 services:
   postgis:
     image: postgis_arm64/postgis
-    container_name: postgis
+    container_name: postgis_container
+    ports:
+      - 5432:5432
     platform: linux/arm64
     environment:
-      POSTGRES_USER: 'user'
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-postgres} 
-    ports:
-      - 25432:5432
     volumes:
-      - pgdata:/var/lib/postgresql/data
-    restart: on-failure
-    healthcheck:
-      test: "PGPASSWORD=docker pg_isready -h 127.0.0.1 -U docker -d gis"
-
-  pgadmin4:
-    image: dpage/pgadmin4
-    container_name: pgadmin4_container
-    ports:
-      - "${PGADMIN_PORT:-5050}:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "pgadmin4@palkovic.org"
-      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd_secret
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    secrets:
-      - passwd_secret
+      - type: bind
+        source: ./data
+        target: /var/lib/postgresql/data
+    networks:
+      - postgres
 
     restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pg_container
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd_secret
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    restart: unless-stopped
+    secrets:
+      - passwd_secret
+    networks:
+      - postgres
     links:
       - postgis
 
 volumes:
-  pgdata:
+  postgres:
+  pgadmin:
+
+networks:
+  postgres:
+    driver: bridge
 
 secrets:
-  # email_secret: 
-  #   file: ./pgadmin_email.txt
   passwd_secret: 
     file: ./pgadmin_pwd.txt
   
