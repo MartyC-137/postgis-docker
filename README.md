@@ -26,7 +26,17 @@ mkdir data
 - Create a file called `pgadmin_pwd.txt` containing your PG Admin password:
 
 ``` sh
-echo "my_password" >> pgadmin_pwd.txt
+echo "my_password" > pgadmin_pwd.txt
+```
+
+- Create a file called `postgres_pwd.txt` containing the password for
+  connecting to and admistering the postgis dB. Note this file is only
+  read when initializing the postgres dB the first time the container
+  is started with an empty data sub-directory. If you want to change
+  the dB password subsequently, it will require using the `ALTER USER`
+
+``` sh
+echo "password_str" > postgres_pwd.txt
 ```
 
 - If you didn't clone the repo and are working on your own, run the following:
@@ -41,5 +51,6 @@ The containers are now ready to start.
 ### Setting up the database
 
 ``` sh
-docker compose up
+docker compose up --no-start
+docker compose start
 ```
