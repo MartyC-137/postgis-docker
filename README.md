@@ -3,27 +3,43 @@ A docker compose file containing PostGIS for `arm64` architecture and pgadmin4. 
 
 This project uses the following Docker base images:
 
-- [x] [imresamu/postgis](https://hub.docker.com/r/imresamu/postgis)
-- [x] [dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4)
+- [imresamu/postgis](https://hub.docker.com/r/imresamu/postgis) - PostGIS + PostgreSQL
+- [dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4) - PGAdmin
 
 ## Getting started
 
+**Download [Docker Desktop](https://www.docker.com/products/docker-desktop/)** 
+
 - Clone the repo:
->
-> ``` bash
-> cd repo/location
-> git clone https://github.com/MartyC-137/postgis-docker.git
-> ```
+  
+``` sh
+cd repo/path/here
+git clone https://github.com/MartyC-137/postgis-docker.git
+```
 
 - Create a directory in the root of the repo called `data`:
-> 
-> ``` bash
-> mkdir data
-> ```
 
-- Create a file called `pgadmin_pwd.txt` containing your password. This file is ignored in this repo but make sure to run the following if you are working on your own:
+``` sh
+mkdir data
+```
+
+- Create a file called `pgadmin_pwd.txt` containing your PG Admin password:
+
+``` sh
+echo "my_password" >> pgadmin_pwd.txt
+```
+
+- If you didn't clone the repo and are working on your own, run the following:
 >
-> ``` bash
+> ``` sh
 > echo "pgadmin_pwd.txt" >> .gitignore
 > echo "data/" >> .gitignore
 > ```
+
+The containers are now ready to start.
+
+### Setting up the database
+
+``` sh
+docker compose up
+```
