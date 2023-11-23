@@ -30,11 +30,11 @@ echo "my_password" >> pgadmin_pwd.txt
 ```
 
 - If you didn't clone the repo and are working on your own, run the following:
->
-> ``` sh
-> echo "pgadmin_pwd.txt" >> .gitignore
-> echo "data/" >> .gitignore
-> ```
+  
+``` sh
+echo "pgadmin_pwd.txt" >> .gitignore
+echo "data/" >> .gitignore
+```
 
 The containers are now ready to start.
 
