@@ -4,24 +4,20 @@ services:
     image: imresamu/postgis
     container_name: postgis
     ports:
-        - 5432:5432
+      - 5432:5432
     platform: linux/arm64
     environment:
-        POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - type: bind
         source: ./data
         target: /var/lib/postgresql/data
-    # networks:
-    #   gisnet:
-    #     aliases:
-    #       - postgis15.docker
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4
     ports:
-        - 5050:80
+      - 5050:80
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd_secret
@@ -33,7 +29,3 @@ volumes:
 secrets:
   passwd_secret:
     file: ./pgadmin_pwd.txt
-
-# networks:
-#   gisnet:
-#     external: true
