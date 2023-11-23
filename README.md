@@ -7,10 +7,16 @@ This project uses the following Docker base images:
 - [x] [dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4)
 
 For the `PGADMIN_DEFAULT_PASSWORD_FILE` environment variable, create a file called `pgadmin_pwd.txt` containing your password. This file is ignored in this repo but make sure to run the following if you are working on your own:
+>
+> ``` bash
+> echo "pgadmin_pwd.txt" >> .gitignore
+> ```
 
-``` bash
-echo "pgadmin_pwd.txt" >> .gitignore
-```
+I also recommend ignoring the `data/` directory that gets created:
+>
+> ``` bash
+> echo "data/" >> .gitignore
+> ```
 
 ### Usage
 
