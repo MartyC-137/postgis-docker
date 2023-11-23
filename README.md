@@ -1,5 +1,11 @@
-# postgis-docker
-A docker compose file containing PostGIS for `arm64` architecture and pgadmin4. This will allow you to create a PostgreSQL spatial database on a Silicon Mac and manage it with PGAdmin.
+# PostGIS Docker
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="https://assets.stickpng.com/images/62a9c7c08ff6441a2952dad3.png" alt="Image 1" style="width: 48%;">
+    <img src="https://download.logo.wine/logo/PostgreSQL/PostgreSQL-Logo.wine.png" alt="Image 2" style="width: 70%;">
+</div>
+
+This repo contains a Docker configuration to run PostGIS and PGAdmin on the `arm64` architecture. This will allow you to create a PostgreSQL spatial database on a Silicon Mac and manage it with PGAdmin.
 
 This project uses the following Docker base images:
 
