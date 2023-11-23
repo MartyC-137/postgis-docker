@@ -1,52 +1,41 @@
-version: "3.1"
-
+version: '3.1'
 services:
   postgis:
-    image: postgis_arm64/postgis
-    container_name: postgis_container
+    image: imresamu/postgis
+    container_name: postgis
     ports:
-      - 5432:5432
+        - 25432:5432
     platform: linux/arm64
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+        POSTGRES_PASSWORD: postgres
     volumes:
       - type: bind
         source: ./data
         target: /var/lib/postgresql/data
     networks:
-      - postgres
-
-    restart: unless-stopped
+      gisnet:
+        aliases:
+          - postgis15.docker
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pg_container
+    container_name: pgadmin4
     ports:
-      - 5050:80
+        - '5050:80'
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd_secret
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-    restart: unless-stopped
     secrets:
       - passwd_secret
-    networks:
-      - postgres
     links:
-      - postgis
-
+        - postgis
 volumes:
   postgres:
   pgadmin:
+secrets:
+  passwd_secret:
+    file: ./pgadmin_pwd.txt
 
 networks:
-  postgres:
-    driver: bridge
-
-secrets:
-  passwd_secret: 
-    file: ./pgadmin_pwd.txt
-  
+  gisnet:
+    external: true
