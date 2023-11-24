@@ -5,6 +5,13 @@
     <img src="assets/postgres.png" alt="Postgres" style="width: 35%;">
 </div>
 
+# Table of Contents
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Setting Up The Database](#setting-up-the-database)
+
+## Introduction
+
 This repo contains a Docker configuration to run PostgreSQL, PostGIS and PGAdmin on the `arm64` architecture. This will allow you to create a PostgreSQL spatial database on a Silicon Mac and manage it with PGAdmin.
 
 This project uses the following Docker base images:
@@ -12,7 +19,7 @@ This project uses the following Docker base images:
 - [imresamu/postgis](https://hub.docker.com/r/imresamu/postgis) - PostGIS + PostgreSQL
 - [dpage/pgadmin4](https://hub.docker.com/r/dpage/pgadmin4) - PGAdmin
 
-## Getting started
+## Getting Started
 
 **Download [Docker Desktop](https://www.docker.com/products/docker-desktop/)** 
 
@@ -23,10 +30,10 @@ cd repo/path/here
 git clone https://github.com/MartyC-137/postgis-docker.git
 ```
 
-- Create a directory in the root of the repo called `data`:
+- Create two directories in the root of the repo called `data` and `pgadmin`:
 
 ``` sh
-mkdir data
+mkdir data pgadmin
 ```
 
 - Create a file called `pgadmin_pwd.txt` containing your PG Admin password:
@@ -50,7 +57,7 @@ echo "data/" >> .gitignore
 
 The containers are now ready to start.
 
-### Setting up the database
+## Setting Up The Database
 
 Run the following command in a terminal:
 
