@@ -15,7 +15,6 @@ services:
     secrets:
       - postgres_pwd
 
-
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4
@@ -34,6 +33,7 @@ services:
 volumes:
   postgres:
   pgadmin:
+
 secrets:
   passwd_secret:
     file: ./pgadmin_pwd.txt
