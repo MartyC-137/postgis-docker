@@ -12,7 +12,7 @@
 
 ## Introduction
 
-This repo contains a Docker configuration to run PostgreSQL, PostGIS and PGAdmin on the `arm64` architecture. This will allow you to create a PostgreSQL spatial database on a Silicon Mac and manage it with PGAdmin.
+This repo contains a Docker configuration to run PostgreSQL, PostGIS (Postgres support for geospatial data) and PGAdmin on the `arm64` architecture. This will allow you to create a PostgreSQL spatial database on a Silicon Mac and manage it with PGAdmin.
 
 This project uses the following Docker base images:
 
