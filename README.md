@@ -33,6 +33,7 @@ git clone https://github.com/MartyC-137/postgis-docker.git
 - Create two directories in the root of the repo called `data` and `pgadmin`:
 
 ``` sh
+cd postgis-docker
 mkdir data pgadmin
 ```
 
